@@ -5,11 +5,10 @@ import com.growfin.studentportal.dto.StudentRequestDTO;
 import com.growfin.studentportal.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.growfin.studentportal.entity.Course;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/courses")
@@ -23,4 +22,12 @@ public class CourseController {
         CourseResponseDTO  response = courseService.createCourse(dto);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping
+    public ResponseEntity<List<String>> getAllCourses() {
+        List<String> courses = courseService.getAllCourseNames();
+        return ResponseEntity.ok(courses);
+    }
+
+
 }

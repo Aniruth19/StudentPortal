@@ -1,7 +1,5 @@
 package com.growfin.studentportal.dto;
-
 import lombok.*;
-
 import java.util.List;
 
 @Data

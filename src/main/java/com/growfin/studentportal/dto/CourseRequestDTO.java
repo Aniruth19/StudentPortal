@@ -1,5 +1,4 @@
 package com.growfin.studentportal.dto;
-
 import lombok.*;
 
 @Data

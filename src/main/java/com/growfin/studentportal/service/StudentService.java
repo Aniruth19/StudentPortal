@@ -1,5 +1,6 @@
 package com.growfin.studentportal.service;
 
+import com.growfin.studentportal.exception.StudentNotFoundException;
 import com.growfin.studentportal.repository.CourseRepository;
 import com.growfin.studentportal.entity.Course;
 import com.growfin.studentportal.entity.Student;
@@ -49,11 +50,10 @@ public class StudentService {
     //4. DELETING A STUDENT
     public void deleteStudent(Long id) {
         if (!studentRepository.existsById(id)) {
-            throw new RuntimeException("Student not found");
+            throw new StudentNotFoundException(id);
         }
         studentRepository.deleteById(id);
     }
-
 
 
 }

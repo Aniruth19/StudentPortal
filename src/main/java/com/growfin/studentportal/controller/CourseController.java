@@ -3,6 +3,7 @@ import com.growfin.studentportal.dto.CourseRequestDTO;
 import com.growfin.studentportal.dto.CourseResponseDTO;
 import com.growfin.studentportal.dto.StudentRequestDTO;
 import com.growfin.studentportal.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +15,12 @@ import com.growfin.studentportal.entity.Course;
 @RequestMapping("/api/courses")
 public class CourseController {
 
+    @Autowired
+    private CourseService courseService;
+
     @PostMapping
     ResponseEntity<CourseResponseDTO> createCourse(@RequestBody CourseRequestDTO dto) {
-        CourseResponseDTO  response = CourseService.createCourse(dto);
+        CourseResponseDTO  response = courseService.createCourse(dto);
         return ResponseEntity.ok(response);
     }
 }

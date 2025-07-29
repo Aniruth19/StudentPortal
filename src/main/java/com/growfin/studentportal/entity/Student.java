@@ -28,4 +28,6 @@ public class Student {
                     inverseJoinColumns = @JoinColumn(name = "course_id")
             )
     Set<Course> courses;
+
+
 }

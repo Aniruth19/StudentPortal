@@ -3,6 +3,7 @@ import com.growfin.studentportal.dto.CourseRequestDTO;
 import com.growfin.studentportal.dto.CourseResponseDTO;
 import com.growfin.studentportal.dto.StudentRequestDTO;
 import com.growfin.studentportal.service.CourseService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,10 @@ public class CourseController {
         return ResponseEntity.ok(courses);
     }
 
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> deleteCourse(@PathVariable  Long id) {
+        courseService.deleteCourse(id);
+        ResponseEntity.noContent().build();
+    }
 
 }

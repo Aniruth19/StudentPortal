@@ -1,5 +1,6 @@
 package com.growfin.studentportal.dto;
 import lombok.*;
+import com.growfin.studentportal.enums.CourseDifficulty;
 
 @Data
 @NoArgsConstructor
@@ -7,4 +8,5 @@ import lombok.*;
 @Builder
 public class CourseRequestDTO {
     private String courseName;
+    private CourseDifficulty courseDifficulty;
 }

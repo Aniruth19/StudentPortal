@@ -1,6 +1,7 @@
 package com.growfin.studentportal.controller;
 
 import java.util.*;
+
 import com.growfin.studentportal.dto.StudentRequestDTO;
 import com.growfin.studentportal.dto.StudentResponseDTO;
 import com.growfin.studentportal.entity.Student;
@@ -19,8 +20,6 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private StudentRepository studentRepository;
 
     @PostMapping
     public ResponseEntity<StudentResponseDTO> createStudent(@RequestBody StudentRequestDTO dto) {
@@ -29,7 +28,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
@@ -47,9 +46,14 @@ public class StudentController {
             @PathVariable Long courseId) {
 
         studentService.enrollStudentIntoCourse(studentId, courseId);
-        return ResponseEntity.noContent().build();  // 204 No Content
+        return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{studentId}/courses/{courseId}")
+    public ResponseEntity<Void> unenrollStudentfromCourse(@PathVariable long studentId, @PathVariable long courseId) {
+        studentService.unenrollStudentFromCourse(studentId, courseId);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 

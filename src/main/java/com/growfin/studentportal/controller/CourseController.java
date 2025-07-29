@@ -2,6 +2,7 @@ package com.growfin.studentportal.controller;
 import com.growfin.studentportal.dto.CourseRequestDTO;
 import com.growfin.studentportal.dto.CourseResponseDTO;
 import com.growfin.studentportal.dto.StudentRequestDTO;
+import com.growfin.studentportal.enums.CourseDifficulty;
 import com.growfin.studentportal.service.CourseService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,13 @@ public class CourseController {
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteCourse(@PathVariable  Long id) {
         courseService.deleteCourse(id);
-        ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/difficulty/{val}")
+    ResponseEntity<List<String>> getCourseWithDifficulty(@PathVariable("val") CourseDifficulty courseDifficulty) {
+        List<String> courseList = courseService.getCourseWithDifficulty(courseDifficulty);
+        return ResponseEntity.ok(courseList);
     }
 
 }

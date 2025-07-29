@@ -1,16 +1,15 @@
 package com.growfin.studentportal.entity;
 
+import com.growfin.studentportal.enums.CourseDifficulty;
 import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -20,6 +19,9 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long courseId;
     String courseName;
+
+    @Enumerated(EnumType.STRING)
+    CourseDifficulty courseDifficulty;
 
     @ManyToMany(mappedBy = "courses")
     Set<Student> students;

@@ -1,9 +1,6 @@
 package com.growfin.studentportal.entity;
-
 import jakarta.persistence.*;
-import java.util.List;
-import java.util.Set;
-
+import java.util.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,11 +18,12 @@ public class Student {
     long studentId;
     String studentName;
 
-    @ManyToMany(cascade = CascadeType.ALL )
+    @ManyToMany
             @JoinTable(
                     name = "student_courses",
                     joinColumns = @JoinColumn(name = "student_id"),
                     inverseJoinColumns = @JoinColumn(name = "course_id")
+
             )
     Set<Course> courses;
 

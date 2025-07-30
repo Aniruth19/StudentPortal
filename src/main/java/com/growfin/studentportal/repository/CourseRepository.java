@@ -1,6 +1,6 @@
 package com.growfin.studentportal.repository;
 
-import com.growfin.studentportal.entity.Course;
+import com.growfin.studentportal.model.Course;
 import com.growfin.studentportal.enums.CourseDifficulty;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,7 +1,7 @@
-package com.growfin.studentportal.entity;
+package com.growfin.studentportal.model;
 
 import com.growfin.studentportal.enums.CourseDifficulty;
-import java.util.List;
+
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -14,16 +14,15 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class Course {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long courseId;
-    String courseName;
+    private Long courseId;
+    private String courseName;
 
     @Enumerated(EnumType.STRING)
-    CourseDifficulty courseDifficulty;
+    private CourseDifficulty courseDifficulty;
 
-    @ManyToMany(mappedBy = "courses")
-    Set<Student> students;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private Set<Enrollment> enrollments;
     
 }

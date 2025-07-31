@@ -32,7 +32,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private EnrollmentRepository enrollmentRepository;
 
     @Override
-    public void enrollStudent(Long studentId, Long courseId) {
+    public void enrollStudent(Long studentId, Long courseId) throws StudentNotFoundException, CourseNotFoundException {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new StudentNotFoundException(studentId));
 
@@ -50,7 +50,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
-    public void unenrollStudent(Long studentId, Long courseId) {
+    public void unenrollStudent(Long studentId, Long courseId) throws EnrollmentNotFoundException, StudentNotFoundException {
         Enrollment enrollment = enrollmentRepository.findByStudentStudentIdAndCourseCourseId(studentId, courseId)
                 .orElseThrow(() -> new EnrollmentNotFoundException(studentId, courseId));
         enrollmentRepository.delete(enrollment);
@@ -90,7 +90,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
-    public void setStudentEnrollmentStatus(Long studentId, Long courseId, CourseStatus status) {
+    public void setStudentEnrollmentStatus(Long studentId, Long courseId, CourseStatus status) throws EnrollmentNotFoundException {
         Enrollment enrollment = enrollmentRepository
                 .findByStudentStudentIdAndCourseCourseId(studentId, courseId)
                 .orElseThrow(() -> new EnrollmentNotFoundException(studentId, courseId));
